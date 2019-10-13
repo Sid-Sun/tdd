@@ -8,6 +8,9 @@ type Product struct {
 }
 
 func NewProduct(name string, price int) (Product, error) {
+	if price <= 0 && name == "" {
+		return Product{}, errors.New("a product's price needs to be a positive non-zero value and it needs to have a name")
+	}
 	if price <= 0 {
 		return Product{}, errors.New("a product's price cannot be zero or negative")
 	}
